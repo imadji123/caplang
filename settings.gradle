@@ -1,0 +1,2 @@
+rootProject.name = "Caplang"
+include ':app'
