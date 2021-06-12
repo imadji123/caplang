@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.yariksoffice.lingver.Lingver
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -42,7 +43,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun changeLanguage(language: String) {
-        AppUtils.setAppLanguage(this, language)
+//        AppUtils.setAppLanguage(this, language)
+        Lingver.getInstance().setLocale(MainApplication.appContext(), language)
         reloadApp()
     }
 
