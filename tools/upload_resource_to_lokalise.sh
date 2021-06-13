@@ -17,7 +17,7 @@ upload_en_strings= lokalise2 file upload --token $LOKALISE_TOKEN --project-id $L
 
 upload_en_plurals= lokalise2 file upload --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID --file ./app/src/main/res/values/plurals.xml --lang-iso en
 
-$upload_en_strings
-$upload_en_plurals
-
-echo -e "\nUpload complete.\n"
+#$upload_en_strings
+#$upload_en_plurals
+#
+#echo -e "\nUpload complete.\n"

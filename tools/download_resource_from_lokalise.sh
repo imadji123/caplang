@@ -26,8 +26,8 @@ mv ./tempFolderForLokalise/values-ko/plurals.xml ./app/src/main/res/values-ko/pl
 mv ./tempFolderForLokalise/values-ja/strings.xml ./app/src/main/res/values-ja/strings.xml
 mv ./tempFolderForLokalise/values-ja/plurals.xml ./app/src/main/res/values-ja/plurals.xml
 
-mv ./tempFolderForLokalise/values-in/strings.xml ./app/src/main/res/values-in/strings.xml
-mv ./tempFolderForLokalise/values-in/plurals.xml ./app/src/main/res/values-in/plurals.xml
+mv ./tempFolderForLokalise/values-id/strings.xml ./app/src/main/res/values-in/strings.xml
+mv ./tempFolderForLokalise/values-id/plurals.xml ./app/src/main/res/values-in/plurals.xml
 
 rm -rf ./tempFolderForLokalise/
 
