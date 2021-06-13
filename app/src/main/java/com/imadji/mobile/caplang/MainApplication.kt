@@ -4,9 +4,14 @@ import android.app.Application
 import android.content.Context
 import com.yariksoffice.lingver.Lingver
 import android.content.res.Configuration
+import android.util.Log
 import com.lokalise.sdk.Lokalise
+import com.lokalise.sdk.LokaliseCallback
+import com.lokalise.sdk.LokaliseUpdateError
 
 class MainApplication : Application() {
+
+    private var lokaliseCallback: LokaliseCallback? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -30,11 +35,38 @@ class MainApplication : Application() {
         )
 
         Lokalise.isPreRelease = BuildConfig.DEBUG
+
+        if (BuildConfig.DEBUG) {
+            Lokalise.clearAllCallbacks()
+
+            lokaliseCallback = object : LokaliseCallback {
+                override fun onUpdateFailed(error: LokaliseUpdateError) {
+                    Log.d("Lokalise SDK", "Lokalise onUpdateFailed ${error.name}")
+                }
+
+                override fun onUpdateNotNeeded() {
+                    Log.d("Lokalise SDK", "Lokalise onUpdateNotNeeded")
+                }
+
+                override fun onUpdated(oldBundleId: Long, newBundleId: Long) {
+                    Log.d("Lokalise SDK", "Lokalise onUpdated from $oldBundleId to $newBundleId")
+                }
+            }
+
+            lokaliseCallback?.let { Lokalise.addCallback(it) }
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         AppUtils.updateLocale(this)
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        lokaliseCallback?.let {
+            Lokalise.removeCallback(it)
+        }
     }
 
     companion object {
