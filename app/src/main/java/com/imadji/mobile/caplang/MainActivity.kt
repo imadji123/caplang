@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.yariksoffice.lingver.Lingver
+import com.lokalise.sdk.Lokalise
+import com.lokalise.sdk.LokaliseResources
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity() {
 
@@ -13,6 +15,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        // Fetch the latest translations from Lokalise (can be called anywhere)
+        Lokalise.updateTranslations()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -43,8 +48,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun changeLanguage(language: String) {
-//        AppUtils.setAppLanguage(this, language)
-        Lingver.getInstance().setLocale(MainApplication.appContext(), language)
+        AppUtils.updateLocale(this, language)
         reloadApp()
     }
 
